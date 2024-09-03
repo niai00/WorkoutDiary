@@ -1,10 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import Run from './components/run.js';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Testing</Text>
+      <Text style={styles.title}>Add workout</Text>
+
+      <Run />
+
+      <Button
+        title='Add workout'
+        color={'#1b3528'}
+      />
+
       <StatusBar style="auto" />
     </View>
   );
@@ -16,5 +25,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    marginBottom: 20,
   },
 });
+
