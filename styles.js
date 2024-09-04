@@ -11,7 +11,7 @@ export default StyleSheet.create({
       marginVertical: 20,
       marginTop: 50,
       textAlign: 'center',
-      color: '#137539'
+      color: '#6fca9c'
     },
     sport: {
       justifyContent: 'space-around',
@@ -19,12 +19,12 @@ export default StyleSheet.create({
       margin: 10,
     },
     selected: {
-      backgroundColor: '#6ad8ae',
+      backgroundColor: '#6fca9c',
       color: 'white',
     },
     input: {
       width: 200,
-      borderColor: 'gray',
+      borderColor: '#17492e',
       borderWidth: 1,
       margin: 10,
       padding: 5,
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     dateButton: {
       width: 200,
       padding: 10,
-      borderColor: 'gray',
+      borderColor: '#17492e',
       borderWidth: 1,
       marginVertical: 10,
       alignSelf: 'center',
