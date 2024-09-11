@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, Button, Alert } from 'react-native';
+import { SafeAreaView, Button, Alert, TouchableOpacity, Text } from 'react-native';
 import { SegmentedButtons, TextInput } from 'react-native-paper';
 import DateModal from './DateModal';
 import moment from 'moment';
@@ -35,7 +35,7 @@ export default function Home({ addWorkout, unit }) {
     }
 
     addWorkout(value, distance, duration, selectedDate);
-    
+
 
     setValue('');
     setDistance('');
@@ -44,7 +44,7 @@ export default function Home({ addWorkout, unit }) {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <SegmentedButtons
         value={value}
         onValueChange={setValue}
@@ -60,6 +60,7 @@ export default function Home({ addWorkout, unit }) {
         value={distance}
         onChangeText={setDistance}
         keyboardType='numeric'
+        style={styles.input}
       />
 
       <TextInput
@@ -67,10 +68,23 @@ export default function Home({ addWorkout, unit }) {
         value={duration}
         onChangeText={setDuration}
         keyboardType='numeric'
+        style={styles.input}
       />
 
-      <Button title={`Date: ${selectedDate}`} onPress={() => setShowDateModal(true)} />
-      <Button title="Add Workout" onPress={handleAddWorkout} />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => setShowDateModal(true)}>
+        <Text
+          style={styles.buttonText}>
+          {`Date: ${selectedDate}`}
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleAddWorkout}>
+        <Text style={styles.buttonText}>Add Workout</Text>
+      </TouchableOpacity>
+
 
       <DateModal
         visible={showDateModal}
