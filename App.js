@@ -1,28 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { FlatList, View } from 'react-native';
-import WorkoutInput from './components/WorkoutInput';
-import WorkoutList from './components/WorkoutList';
-import styles from './styles';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import Home from './components/Home';
+import Workouts from './components/Workouts';
+import Settings from './components/Settings';
+import React from 'react';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [workouts, setWorkouts] = useState([]);
+  const [workouts, setWorkouts] = React.useState([]);
+  const [unit, setUnit] = React.useState('km');
 
-  const addWorkout = (newWorkout) => {
-    setWorkouts([...workouts, newWorkout]);
+  const addWorkout = (value, distance, duration) => {
+    setWorkouts([...workouts, { value, distance, duration, key: Math.random().toString() }]);
   };
 
   return (
-    <FlatList
-      style={styles.container}
-      data={workouts}
-      keyExtractor={(item, index) => index.toString()}
-      ListHeaderComponent={<WorkoutInput onAddWorkout={addWorkout} />}
-      renderItem={({ item }) => <WorkoutList workout={item} />}
-      ListFooterComponent={<StatusBar style="auto" />}
-    />
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Add Workout">
+          {(props) => <Home {...props} addWorkout={addWorkout} unit={unit} />}
+        </Tab.Screen>
+        <Tab.Screen name="Workouts">
+          {(props) => <Workouts {...props} workouts={workouts} unit={unit} />}
+        </Tab.Screen>
+        <Tab.Screen name="Settings">
+          {(props) => <Settings {...props} unit={unit} setUnit={setUnit} />}
+        </Tab.Screen>
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
+
+
 
 
 
