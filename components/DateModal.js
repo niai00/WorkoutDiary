@@ -12,7 +12,7 @@ export default function DateModal({ visible, onClose, onSelectDate, selectedDate
       onRequestClose={onClose}
     >
       <View>
-        <View>
+        <View style={styles.calendar}>
           <Calendar
             onDayPress={(day) => onSelectDate(day.dateString)}
             markedDates={{
