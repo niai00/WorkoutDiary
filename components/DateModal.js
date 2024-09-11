@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Modal, Button } from 'react-native';
+import { View, Modal, Button} from 'react-native';
 import { Calendar } from 'react-native-calendars';
-import styles from '../styles';
 
-export default function DatePickerModal({ visible, onClose, onSelectDate, selectedDate }) {
+export default function DateModal({ visible, onClose, onSelectDate, selectedDate }) {
   return (
     <Modal
       transparent={true}

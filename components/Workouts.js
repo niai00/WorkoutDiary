@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, FlatList, View, Text } from 'react-native';
+import { SafeAreaView, FlatList, View, Text } from 'react-native';
 
 export default function Workouts({ workouts, unit }) {
   const convertDistance = (distance) => {
@@ -18,6 +18,7 @@ export default function Workouts({ workouts, unit }) {
             <Text>{item.value}</Text>
             <Text>Distance: {convertDistance(item.distance)} {unit}</Text>
             <Text>Duration: {item.duration} min</Text>
+            <Text>Date: {item.selectedDate || 'Not selected'}</Text>
           </View>
         )}
         keyExtractor={item => item.key}
@@ -25,5 +26,4 @@ export default function Workouts({ workouts, unit }) {
     </SafeAreaView>
   );
 }
-
 

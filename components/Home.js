@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Button } from 'react-native';
+import { SafeAreaView, Button } from 'react-native';
 import { SegmentedButtons, TextInput } from 'react-native-paper';
+import DateModal from './DateModal';
 
 export default function Home({ addWorkout, unit }) {
   const [value, setValue] = useState('');
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
+  const [showDateModal, setShowDateModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('');
 
   const handleAddWorkout = () => {
     if (value && distance && duration) {
-      addWorkout(value, distance, duration);
+      addWorkout(value, distance, duration, selectedDate);
       setValue('');
       setDistance('');
       setDuration('');
+      setSelectedDate('');
     }
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <SegmentedButtons
         value={value}
         onValueChange={setValue}
@@ -42,7 +46,19 @@ export default function Home({ addWorkout, unit }) {
         keyboardType='numeric'
       />
 
+      <Button title="Select Date" onPress={() => setShowDateModal(true)} />
       <Button title="Add Workout" onPress={handleAddWorkout} />
+
+      <DateModal
+        visible={showDateModal}
+        onClose={() => setShowDateModal(false)}
+        onSelectDate={(date) => {
+          setSelectedDate(date);
+          setShowDateModal(false);
+        }}
+        selectedDate={selectedDate}
+      />
     </SafeAreaView>
   );
 }
+
