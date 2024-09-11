@@ -10,8 +10,8 @@ export default function DateModal({ visible, onClose, onSelectDate, selectedDate
       animationType="slide"
       onRequestClose={onClose}
     >
-      <View style={styles.modalContainer}>
-        <View style={styles.calendarContainer}>
+      <View>
+        <View>
           <Calendar
             onDayPress={(day) => onSelectDate(day.dateString)}
             markedDates={{
