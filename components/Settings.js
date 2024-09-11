@@ -1,6 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text } from 'react-native';
 import { SegmentedButtons } from 'react-native-paper';
+import styles from '../styles/styles';
 
 export default function Settings({ unit, setUnit }) {
   return (

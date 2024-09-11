@@ -1,5 +1,6 @@
 import React from 'react';
 import { SafeAreaView, FlatList, View, Text } from 'react-native';
+import styles from '../styles/styles';
 
 export default function Workouts({ workouts, unit }) {
   const convertDistance = (distance) => {
@@ -10,11 +11,11 @@ export default function Workouts({ workouts, unit }) {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={workouts}
         renderItem={({ item }) => (
-          <View>
+          <View style={styles.list}>
             <Text>{item.value}</Text>
             <Text>Distance: {convertDistance(item.distance)} {unit}</Text>
             <Text>Duration: {item.duration} min</Text>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Modal, Button} from 'react-native';
 import { Calendar } from 'react-native-calendars';
+import styles from '../styles/styles';
 
 export default function DateModal({ visible, onClose, onSelectDate, selectedDate }) {
   return (

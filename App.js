@@ -4,6 +4,8 @@ import Home from './components/Home';
 import Workouts from './components/Workouts';
 import Settings from './components/Settings';
 import React from 'react';
+import styles from './styles/styles';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +21,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Add Workout">
-          {(props) => <Home {...props} addWorkout={addWorkout} unit={unit} />}
+          {(props) => <Home {...props} addWorkout={addWorkout} unit={unit} iconName = 'focused'/>}
         </Tab.Screen>
         <Tab.Screen name="Workouts">
           {(props) => <Workouts {...props} workouts={workouts} unit={unit} />}

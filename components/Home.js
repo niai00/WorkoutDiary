@@ -3,6 +3,7 @@ import { SafeAreaView, Button, Alert } from 'react-native';
 import { SegmentedButtons, TextInput } from 'react-native-paper';
 import DateModal from './DateModal';
 import moment from 'moment';
+import styles from '../styles/styles';
 
 export default function Home({ addWorkout, unit }) {
   const [value, setValue] = useState('');
@@ -48,9 +49,9 @@ export default function Home({ addWorkout, unit }) {
         value={value}
         onValueChange={setValue}
         buttons={[
-          { value: 'run', label: 'Run' },
-          { value: 'ski', label: 'Ski' },
-          { value: 'swim', label: 'Swim' }
+          { value: 'run', label: 'Run', icon: 'run' },
+          { value: 'ski', label: 'Ski', icon: 'ski' },
+          { value: 'swim', label: 'Swim', icon: 'swim' }
         ]}
       />
 
