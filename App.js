@@ -11,8 +11,8 @@ export default function App() {
   const [workouts, setWorkouts] = React.useState([]);
   const [unit, setUnit] = React.useState('km');
 
-  const addWorkout = (value, distance, duration) => {
-    setWorkouts([...workouts, { value, distance, duration, key: Math.random().toString() }]);
+  const addWorkout = (value, distance, duration, selectedDate) => {
+    setWorkouts([...workouts, { value, distance, duration, selectedDate, key: Math.random().toString() }]);
   };
 
   return (

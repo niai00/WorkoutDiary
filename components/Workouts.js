@@ -14,7 +14,7 @@ export default function Workouts({ workouts, unit }) {
       <FlatList
         data={workouts}
         renderItem={({ item }) => (
-          <View style={styles.workoutItem}>
+          <View>
             <Text>{item.value}</Text>
             <Text>Distance: {convertDistance(item.distance)} {unit}</Text>
             <Text>Duration: {item.duration} min</Text>

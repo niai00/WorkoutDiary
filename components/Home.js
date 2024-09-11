@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { SafeAreaView, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, Button, Alert } from 'react-native';
 import { SegmentedButtons, TextInput } from 'react-native-paper';
 import DateModal from './DateModal';
+import moment from 'moment';
 
 export default function Home({ addWorkout, unit }) {
   const [value, setValue] = useState('');
@@ -10,14 +11,35 @@ export default function Home({ addWorkout, unit }) {
   const [showDateModal, setShowDateModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
 
+
+  useEffect(() => {
+    const today = moment().format('YYYY-MM-DD');
+    setSelectedDate(today);
+  }, []);
+
   const handleAddWorkout = () => {
-    if (value && distance && duration) {
-      addWorkout(value, distance, duration, selectedDate);
-      setValue('');
-      setDistance('');
-      setDuration('');
-      setSelectedDate('');
+    if (!value) {
+      Alert.alert("Error", "Please select a sport.");
+      return;
     }
+
+    if (!distance) {
+      Alert.alert("Error", "Please enter the distance.");
+      return;
+    }
+
+    if (!duration) {
+      Alert.alert("Error", "Please enter the duration.");
+      return;
+    }
+
+    addWorkout(value, distance, duration, selectedDate);
+    
+
+    setValue('');
+    setDistance('');
+    setDuration('');
+    setSelectedDate(moment().format('YYYY-MM-DD'));
   };
 
   return (
@@ -46,7 +68,7 @@ export default function Home({ addWorkout, unit }) {
         keyboardType='numeric'
       />
 
-      <Button title="Select Date" onPress={() => setShowDateModal(true)} />
+      <Button title={`Date: ${selectedDate}`} onPress={() => setShowDateModal(true)} />
       <Button title="Add Workout" onPress={handleAddWorkout} />
 
       <DateModal
@@ -61,4 +83,6 @@ export default function Home({ addWorkout, unit }) {
     </SafeAreaView>
   );
 }
+
+
 
