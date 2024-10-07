@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "WorkoutDiary",
-    "slug": "WorkoutDiary",
+    "name": "Workout-Diary",
+    "slug": "Workout-Diary",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

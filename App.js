@@ -1,43 +1,39 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import Home from './components/Home';
-import Workouts from './components/Workouts';
+import { useState } from 'react';
+import AddWorkout from './components/AddWorkout';
+import WorkoutList from './components/WorkoutList';
 import Settings from './components/Settings';
-import React from 'react';
-import styles from './styles/styles';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { BottomNavigation, MD3LightTheme, PaperProvider } from 'react-native-paper';
+import WorkoutContext from './components/WorkoutContext';
+import { SettingsProvider } from './components/SettingsContext';
 
-const Tab = createBottomTabNavigator();
+const routes = [
+  { key: 'addworkout', title: 'Add Workout', focusedIcon: 'plus-circle-outline' },
+  { key: 'workoutlist', title: 'Workout List', focusedIcon: 'format-list-bulleted' },
+  { key: 'settings', title: 'Settings', focusedIcon: 'account-edit-outline' }
+];
 
 export default function App() {
-  const [workouts, setWorkouts] = React.useState([]);
-  const [unit, setUnit] = React.useState('km');
+  const [workouts, setWorkouts] = useState([]);
+  const [navIndex, setNavIndex] = useState(0);
 
-  const addWorkout = (value, distance, duration, selectedDate) => {
-    setWorkouts([...workouts, { value, distance, duration, selectedDate, key: Math.random().toString() }]);
-  };
+  const renderScene = BottomNavigation.SceneMap({
+    addworkout: AddWorkout,
+    workoutlist: WorkoutList,
+    settings: Settings
+  });
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Add Workout">
-          {(props) => <Home {...props} addWorkout={addWorkout} unit={unit}/>}
-        </Tab.Screen>
-        <Tab.Screen name="Workouts">
-          {(props) => <Workouts {...props} workouts={workouts} unit={unit} />}
-        </Tab.Screen>
-        <Tab.Screen name="Settings">
-          {(props) => <Settings {...props} unit={unit} setUnit={setUnit} />}
-        </Tab.Screen>
-      </Tab.Navigator>
-    </NavigationContainer>
+    <PaperProvider theme={MD3LightTheme}>
+      <WorkoutContext.Provider value={{ workouts, setWorkouts }}>
+        <SettingsProvider>
+          <BottomNavigation
+            navigationState={{ index: navIndex, routes }}
+            onIndexChange={setNavIndex}
+            renderScene={renderScene}
+          />
+        </SettingsProvider>
+      </WorkoutContext.Provider>
+    </PaperProvider>
   );
 }
-
-
-
-
-
-
-
 

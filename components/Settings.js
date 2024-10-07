@@ -1,20 +1,22 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
-import { SegmentedButtons } from 'react-native-paper';
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { Switch } from 'react-native-paper';
+import { SettingsContext } from './SettingsContext';
 import styles from '../styles/styles';
 
-export default function Settings({ unit, setUnit }) {
+const Settings = () => {
+  const { isUsingMiles, toggleUnit } = React.useContext(SettingsContext);
+
   return (
-    <SafeAreaView>
-      <Text>Select Distance Unit:</Text>
-      <SegmentedButtons
-        value={unit}
-        onValueChange={setUnit}
-        buttons={[
-          { value: 'km', label: 'Kilometers' },
-          { value: 'miles', label: 'Miles' }
-        ]}
-      />
-    </SafeAreaView>
+    <View style={styles.container}>
+    <View style={styles.switchContainer}>
+      <Text>Meters/Miles</Text>
+      <View>
+        <Switch value={isUsingMiles} onValueChange={toggleUnit} />
+      </View>
+    </View>
+    </View>
   );
-}
+};
+
+export default Settings;
